@@ -1,5 +1,6 @@
 discord.py
 google-generativeai
 yt-dlp
+python-dotenv
 PyNaCl
-flask
+ffmpeg
