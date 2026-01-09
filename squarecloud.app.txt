@@ -1,0 +1,5 @@
+DISPLAY_NAME=SuguBot
+DESCRIPTION=My super AI music bot
+MAIN=main.py
+MEMORY=100
+VERSION=recommended
