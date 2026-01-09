@@ -6,21 +6,30 @@ import random
 import asyncio
 import yt_dlp
 import warnings
+from dotenv import load_dotenv  # <--- NEW IMPORT
 
 warnings.filterwarnings("ignore")
 
 # ==========================================
-# 🔑 KEYS
+# 🔐 SECURE KEYS SETUP
 # ==========================================
-TOKEN = 'Nzc5NjQ0NTM3NTQ1OTQ5MTk3.GKqBfX.s5jUmDXHwa7HsV8VNjwkAk_zcwkgU4PRHBUJX4'
-GEMINI_KEY = 'AIzaSyBnCyVP4sRflGfazQifoUfFO7s2_iyxNZI'
+# This loads the keys from your .env file
+load_dotenv()
+
+TOKEN = os.getenv('DISCORD_TOKEN')
+GEMINI_KEY = os.getenv('GEMINI_API_KEY')
+
+# Safety check to ensure keys are loaded
+if not TOKEN or not GEMINI_KEY:
+    print("❌ ERROR: Keys not found! Make sure you created the .env file with DISCORD_TOKEN and GEMINI_API_KEY.")
+    exit()
 
 # ==========================================
 # ⚙️ SETUP
 # ==========================================
 intents = discord.Intents.default()
 intents.message_content = True
-intents.members = True # Must be ON in Dev Portal
+intents.members = True  # Must be ON in Dev Portal
 intents.voice_states = True 
 
 bot = commands.Bot(command_prefix="!", intents=intents)
@@ -148,7 +157,7 @@ async def send_welcome_message(member):
     )
     embed.set_thumbnail(url=member.display_avatar.url)
     
-    # ✅ FIXED GIF LINK (The one you asked for)
+    # ✅ FIXED GIF LINK
     embed.set_image(url="https://apcp.es/wp-content/uploads/2021/12/banner-welcome.gif")
 
     await channel.send(f"Hey {member.mention} ,", embed=embed)
