@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+from keep_alive import keep_alive
 import discord
 from discord.ext import commands, tasks
 import google.generativeai as genai
@@ -469,6 +470,6 @@ async def play(ctx, *, url):
     except Exception as e:
         await ctx.send("❌ Error! (Check FFmpeg)")
         print(f"Music Error: {e}")
-
+on_ready(): keep_alive()
 bot.run(TOKEN)
 >>>>>>> 17e4232c7f250f79065bff72cbbabcc5d5ea9aa0
